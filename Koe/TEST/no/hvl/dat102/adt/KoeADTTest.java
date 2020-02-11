@@ -27,6 +27,7 @@ public abstract class KoeADTTest {
 	private Integer td2 = 3;
 	private Integer td3 = 4;
 	private Integer td4 = 5;
+	private Integer td5 = 6;
 
 	protected abstract KoeADT<Integer> reset(); 
 	/*
@@ -93,7 +94,17 @@ public abstract class KoeADTTest {
 		koe.innKoe(td2);
 		assertEquals(3, koe.antall());
 	}
-	
+	//Test på utviding av kø (Ikke ferdigstilt, må finne en måte å teste på mange enheter)
+	@Test
+	public final void utvidelseAvKoe() {
+		koe.innKoe(td0);
+		koe.innKoe(td1);
+		koe.innKoe(td2);
+		koe.innKoe(td3);
+		koe.innKoe(td4);
+		koe.innKoe(td5);
+		assertEquals(6, koe.antall());
+	}
 	
 	
 	
