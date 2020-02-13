@@ -151,31 +151,5 @@ public class FilmarkivKjedet implements FilmarkivADT {
 			} 
 		}
 		return current.getElement();
-	}
-	
-	public static void main(String[] args) {
-		FilmarkivADT test = new FilmarkivKjedet();
-		Film film = new Film(323, "Prins", "Troy", 1990, "S", Sjanger.finnSjanger("Action"));
-		Film f2 = new Film(2, "Per", "Tarzan", 1999, "Seik", Sjanger.finnSjanger("Action"));
-		Film f3 = new Film(33, "Paal", "Yas", 1991, "Knut", Sjanger.finnSjanger("Drama"));
-		test.leggTil(film);
-		test.leggTil(f2);
-		test.leggTil(f3);
-		System.out.println("Antall filmer " + test.antallFilmer());
-		Film film2 = new Film(45);
-		test.leggTil(film2);
-		System.out.println("Etter " + test.antallFilmer());
-		System.out.print("Funnet "); 
-		Film funnet = new Film();
-		funnet = test.finnFilmMedNr(2);
-		System.out.println(funnet.getNr()); 
-		Film[] tab2 = test.sokProdusent("P");
-		for(int i = 0; i < tab2.length; i++) {
-			System.out.println("Film " + tab2[i].getNr());
-		}
-		int antAc = test.antallsjanger(Sjanger.ACTION);
-		int antDr = test.antallsjanger(Sjanger.DRAMA);
-		System.out.println("Action: " + antAc + " og Drama: " + antDr);
-	}
-
+	}	
 }
