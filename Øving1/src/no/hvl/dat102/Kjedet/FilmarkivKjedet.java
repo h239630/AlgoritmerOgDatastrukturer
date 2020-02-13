@@ -22,13 +22,11 @@ public class FilmarkivKjedet implements FilmarkivADT {
 	public Film[] hentFilmTabell() {
 		Film[] tabell = new Film[antall];
 		LinearNode<Film> node = start;
-		for (int i = 0; i < antall; i++) {
-			if (node.getElement() != null) { 
-				tabell[i] = node.getElement();
-				node = node.getNext();
-			} else { 
-				node = node.getNext();
-			}
+		int i = 0; 
+		while (node.getElement() != null) {
+			tabell[i] = node.getElement();
+			node = node.getNext();
+			i++;
 		}
 		return tabell;
 	}
@@ -53,7 +51,7 @@ public class FilmarkivKjedet implements FilmarkivADT {
 		} else {
 			last = current; 
 			current = current.getNext();
-			while (current.getElement() != null) {
+			while (current.getElement() != null && !deleted) {
 				if (current.getElement().getNr() == nr) {
 					last.setNext(current.getNext());
 					antall--;
@@ -72,9 +70,9 @@ public class FilmarkivKjedet implements FilmarkivADT {
 		Film[] tempTable = new Film[antall]; 
 		LinearNode<Film> current = start;
 		int count = 0; 
-		for (int i = 0; i < antall; i++) {
+		while (current.getElement() != null) {
 			if (current.getElement().getTittel().contains(delstreng)) {
-				tempTable[i] = current.getElement();
+				tempTable[count] = current.getElement();
 				count++;
 			}
 			current = current.getNext();
@@ -99,9 +97,9 @@ public class FilmarkivKjedet implements FilmarkivADT {
 		Film[] tempTable = new Film[antall];
 		LinearNode<Film> current = start;
 		int count = 0; 
-		for (int i = 0; i < antall; i++) {
+		while (current.getElement() != null) {
 			if (current.getElement().getProdusent().contains(delstreng)) {
-				tempTable[i] = current.getElement();
+				tempTable[count] = current.getElement();
 				count++;
 			}
 			current = current.getNext();

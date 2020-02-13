@@ -1,15 +1,16 @@
-package no.hvl.dat102.Klient;
+package no.hvl.dat102.KlientKjedet;
 
 import no.hvl.dat102.Fil;
-import no.hvl.dat102.Filmarkiv;
+import no.hvl.dat102.Kjedet.FilmarkivKjedet;
 import no.hvl.dat102.ADT.FilmarkivADT;
 
-public class KlientFilmarkiv {
+public class KlientFilmarkivKjedet {
 	
 	public static void main(String[] args) {
-		FilmarkivADT filma = new Filmarkiv(0);
+		
 		//Legg inn korrekt filbane her for at skriving til fil skal fungere
-		String fil = "C:\\DAT102\\AlgoritmerOgDatastrukturer\\Øving1\\src\\no\\hvl\\dat102\\Klient\\filmarkiv.txt";
+		String fil = "C:\\DAT102\\AlgoritmerOgDatastrukturer\\Øving1\\src\\no\\hvl\\dat102\\KlientKjedet\\filmarkiv.txt";
+		FilmarkivADT filma = new FilmarkivKjedet(0);
 		Fil.lesFraFil(filma, fil);
 		Meny meny = new Meny(filma);
 		meny.start(); 
