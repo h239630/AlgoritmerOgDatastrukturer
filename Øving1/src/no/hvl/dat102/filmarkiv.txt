@@ -1,7 +1,8 @@
-6
+7
 159#Per Ståle Larsen#Dødsnø#2009#NordiskFilm#ACTION
 378#Kåre Konradi#Latterligen#1975#OsloVest#DRAMA
 430#Inger Marikollen#Ut av denne verden#1999#DanskeFilmer#SCIFI
 313#Carls Barks#Donald Duck#1995#Disney AS#HISTORY
 389#Marianne Holmedal#Kjærlighetsredet#2009#Paramount#ROMANTIC
 23#Mona Angeltvedt#Mammahjert#1990#Sotra AS#COMEDY
+13#Joachim Nilsen#Hehehe#1980#Filmer AS#ACTION
