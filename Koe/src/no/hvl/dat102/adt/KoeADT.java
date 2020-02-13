@@ -5,21 +5,20 @@ import no.hvl.dat102.exception.EmptyCollectionException;
  * 
  * @author Gruppe 4
  *
- * @param <T> elementtypen
+ * @param <T> Element
  */
 
 public interface KoeADT<T> {
 	
 	/**
 	 * Legger inn et element bakerst i køen. 
-	 * @param Et element
 	 */
 
 	public void innKoe (T element);
 	
 	/**
 	 * Tar ut et element som ligger først i køen og fjerner det fra køen. 
-	 * @return <T> elementtypen
+	 * @return <T> element
 	 * @exception EmptyCollectionException
 	 */
 	
@@ -27,7 +26,7 @@ public interface KoeADT<T> {
 	
 	/**
 	 * Finner det første elementet i køen
-	 * @return <T> elementtypen
+	 * @return <T> element
 	 * @exception EmptyCollectionException
 	 */
 	
