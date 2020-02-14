@@ -67,55 +67,33 @@ public class FilmarkivKjedet implements FilmarkivADT {
 
 	@Override
 	public Film[] sokTittel(String delstreng) {
-		Film[] tempTable = new Film[antall]; 
+		Film[] found = new Film[antall]; 
 		LinearNode<Film> current = start;
 		int count = 0; 
 		while (current.getElement() != null) {
 			if (current.getElement().getTittel().contains(delstreng)) {
-				tempTable[count] = current.getElement();
+				found[count] = current.getElement();
 				count++;
 			}
 			current = current.getNext();
 		}
-		Film[] found; 
-		if (count != 0) {
-			found = new Film[count];
-			for (int j = 0; j < tempTable.length; j++) {
-				if (tempTable[j] != null) {
-					found[count - 1] = tempTable[j];
-					count--;
-				}
-			}
-		} else {
-			found = tempTable;		
-		}
+		found = trim(found, count);
 		return found;
 	}
 
 	@Override
 	public Film[] sokProdusent(String delstreng) {
-		Film[] tempTable = new Film[antall];
+		Film[] found = new Film[antall];
 		LinearNode<Film> current = start;
 		int count = 0; 
 		while (current.getElement() != null) {
 			if (current.getElement().getProdusent().contains(delstreng)) {
-				tempTable[count] = current.getElement();
+				found[count] = current.getElement();
 				count++;
 			}
 			current = current.getNext();
 		}
-		Film[] found; 
-		if (count != 0) {
-			found = new Film[count];
-			for(int j = 0; j < tempTable.length; j++) {
-				if (tempTable[j] != null) {
-					found[count - 1] = tempTable[j];
-					count--;
-				}
-			}
-		} else { 
-			found = tempTable;
-		}
+		found = trim(found, count);
 		return found;
 	}
 
@@ -149,5 +127,15 @@ public class FilmarkivKjedet implements FilmarkivADT {
 			} 
 		}
 		return current.getElement();
-	}	
+	}
+	//Hjelpemetoder
+	public Film[] trim(Film[] tab, int n) {
+		Film[] trimmet = new Film[n];
+		int i = 0; 
+		while (i < n) {
+			trimmet[i] = tab[i];
+			i++;
+		}
+		return trimmet;
+	}
 }

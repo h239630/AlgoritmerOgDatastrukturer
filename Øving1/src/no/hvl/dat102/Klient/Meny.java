@@ -1,6 +1,6 @@
 package no.hvl.dat102.Klient;
 
-//import java.util.Scanner;
+
 import javax.swing.JOptionPane;
 import no.hvl.dat102.Film;
 import no.hvl.dat102.ADT.FilmarkivADT;
@@ -32,7 +32,7 @@ public class Meny {
 					+ "\n0. Lukke arkivet", 
 					"Meny", JOptionPane.INFORMATION_MESSAGE));
 			
-			//int valgt = tekstgr.visHovedmeny();
+
 			switch (valgt) {
 			case 1 : 
 				Film film = tekstgr.lesFilm();
@@ -41,10 +41,6 @@ public class Meny {
 				System.out.println("-----------------------------");
 				break;
 			case 2 : 
-//				System.out.println("Nummer på film du ønsker å slette:");
-//				int nr = leser.nextInt();
-//				System.out.println("Bekreft med OK"); 
-//				String bekreftelse = leser.nextLine();
 				int nr = Integer.parseInt(JOptionPane.showInputDialog("Nummer på film du ønsker å slette:"));
 				if (filma.finnFilmMedNr(nr) == null) {
 					System.out.println("Filmen finnes ikke i arkivet.");
@@ -64,20 +60,15 @@ public class Meny {
 				}
 				break;			
 			case 3 :
-//				System.out.println("Tittel på film?");
-//				leser.nextLine();
-//				String delstreng = leser.nextLine();
 				String delstreng = JOptionPane.showInputDialog("Tittel på film?");
 				tekstgr.skrivUtFilmDelstrengITittel(filma, delstreng);
 				break;
 			case 4 : 
-				System.out.println("Navn på produsent?");
-//				String produsent = leser.nextLine();
 				String produsent = JOptionPane.showInputDialog("Navn på produsent?");
 				tekstgr.skrivUtFilmProdusent(filma, produsent);
 				break;
 			case 5 : 
-				System.out.println("Statistikk:");
+				System.out.println("Statistikk for filmarkivet:");
 				tekstgr.skrivUtStatistikk(filma);
 				break;
 			case 6 : 
@@ -88,16 +79,11 @@ public class Meny {
 				break;
 			case 0 : 
 				avslutt = true;
+				tekstgr.lukk();
 				System.out.println("Arkivet er lukket");
 				break;
 			}
 			
-		}
-		//leser.close();
-			
-		
-		
+		}	
 	}
-	
-
 }

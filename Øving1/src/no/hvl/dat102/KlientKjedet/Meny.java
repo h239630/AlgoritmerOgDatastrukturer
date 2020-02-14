@@ -19,11 +19,15 @@ public class Meny {
 
 		while (!avslutt) {
 
-			int valgt = Integer.parseInt(JOptionPane.showInputDialog(null,
-					"Hva vil du gjøre?" + "\n1. Legge til en film" + "\n2. Slette en film" + "\n3. Søke etter filmer"
-							+ "\n4. Søke etter produsenter" + "\n5. Vise statistikk for arkivet"
-							+ "\n6. Liste opp alle film tittler" + "\n7. Liste opp alle produsenter"
-							+ "\n0. Lukke arkivet",
+			int valgt = Integer.parseInt(JOptionPane.showInputDialog(null, "Hva vil du gjøre?" 
+					+ "\n1. Legge til en film" 
+					+ "\n2. Slette en film" 
+					+ "\n3. Søke etter filmer"
+					+ "\n4. Søke etter produsenter" 
+					+ "\n5. Vise statistikk for arkivet"
+					+ "\n6. Liste opp alle film tittler" 
+					+ "\n7. Liste opp alle produsenter"
+					+ "\n0. Lukke arkivet",
 					"Meny", JOptionPane.INFORMATION_MESSAGE));
 
 			switch (valgt) {
@@ -57,12 +61,11 @@ public class Meny {
 				tekstgr.skrivUtFilmDelstrengITittel(filma, delstreng);
 				break;
 			case 4:
-				System.out.println("Navn på produsent?");
 				String produsent = JOptionPane.showInputDialog("Navn på produsent?");
 				tekstgr.skrivUtFilmProdusent(filma, produsent);
 				break;
 			case 5:
-				System.out.println("Statistikk:");
+				System.out.println("Statistikk for filmarkivet:");
 				tekstgr.skrivUtStatistikk(filma);
 				break;
 			case 6:
@@ -73,6 +76,7 @@ public class Meny {
 				break;
 			case 0:
 				avslutt = true;
+				tekstgr.lukk();
 				System.out.println("Arkivet er lukket");
 				break;
 			}

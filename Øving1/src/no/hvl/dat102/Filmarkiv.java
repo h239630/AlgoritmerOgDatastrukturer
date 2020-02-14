@@ -45,8 +45,7 @@ public class Filmarkiv implements FilmarkivADT {
 	}
 	@Override
 	public Film[] sokTittel(String delstreng) {
-		Film[] funnetFilmer = new Film[antall];  
-		//Alle treff basert på sammenligningen legges inn i den nye tabellen. 
+		Film[] funnetFilmer = new Film[antall];   
 		int indeks = 0; 
 		for (int i = 0; i < antall; i++) {
 			if(filmTabell[i].getTittel().contains(delstreng)) {
@@ -54,6 +53,7 @@ public class Filmarkiv implements FilmarkivADT {
 				indeks++;
 			}
 		}
+		funnetFilmer = trim(funnetFilmer, indeks);
 		return funnetFilmer; 
 	}
 	@Override
@@ -62,9 +62,11 @@ public class Filmarkiv implements FilmarkivADT {
 		int indeks = 0; 
 		for (int i = 0; i < antall; i++) {
 			if(filmTabell[i].getProdusent().contains(delstreng)) {
-				funnetFilmer[indeks] = filmTabell[i]; 
+				funnetFilmer[indeks] = filmTabell[i];
+				indeks++;
 			}
 		}
+		funnetFilmer = trim(funnetFilmer, indeks);
 		return funnetFilmer;
 	}
 	@Override
@@ -95,12 +97,20 @@ public class Filmarkiv implements FilmarkivADT {
 		return funnet; 
 	}
 	//Hjelpemetoder
-		public void utvid() {
-			Film[] hTabell = new Film[filmTabell.length * 2];
-			for (int i = 0; i < filmTabell.length; i++) {
-				hTabell[i] = filmTabell[i]; 
-			}
-			filmTabell = hTabell;
+	public void utvid() {
+		Film[] hTabell = new Film[filmTabell.length * 2];
+		for (int i = 0; i < filmTabell.length; i++) {
+			hTabell[i] = filmTabell[i]; 
 		}
-	
+		filmTabell = hTabell;
+	}
+	public Film[] trim(Film[] tab, int n) {
+		Film[] trimmet = new Film[n];
+		int i = 0; 
+		while (i < n) {
+			trimmet[i] = tab[i];
+			i++;
+		}
+		return trimmet;
+	}
 }
