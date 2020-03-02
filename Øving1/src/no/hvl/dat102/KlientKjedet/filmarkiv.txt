@@ -1,4 +1,6 @@
-6
+8
+2#l#l#2#l#DRAMA
+1#p#p#1#p#DRAMA
 159#Per Ståle Larsen#Dødsnø#2009#NordiskFilm#ACTION
 378#Kåre Konradi#Latterligen#1975#OsloVest#DRAMA
 430#Inger Marikollen#Ut av denne verden#1999#DanskeFilmer#SCIFI
