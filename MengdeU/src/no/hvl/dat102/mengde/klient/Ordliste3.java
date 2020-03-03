@@ -1,13 +1,15 @@
 package no.hvl.dat102.mengde.klient;
 
 import no.hvl.dat102.mengde.adt.MengdeADT;
-import no.hvl.dat102.mengde.kjedet.KjedetMengde;
+//import no.hvl.dat102.mengde.kjedet.KjedetMengde;
+import no.hvl.dat102.mengde.tabell.TabellMengde;
 
 public class Ordliste3 {
 
 	public static void main(String[] args) {
 
-		MengdeADT<String> ordListe1 = new KjedetMengde<String>();
+		//MengdeADT<String> ordListe1 = new KjedetMengde<String>();
+		MengdeADT<String> ordListe1 = new TabellMengde<String>();
 
 		String[] ord1 = { "God", "dag", "Hans", "Hansen", "Hansaby", "Olsen", "Ole", "buss", "rute", "Bergen" };
 
@@ -17,7 +19,8 @@ public class Ordliste3 {
 			ordListe1.leggTil(ord1[i]);
 		}
 
-		MengdeADT<String> ordListe2 = new KjedetMengde<String>();
+		//MengdeADT<String> ordListe2 = new KjedetMengde<String>();
+		MengdeADT<String> ordListe2 = new TabellMengde<String>();
 
 		for (int i = 0; i < ord2.length; i++) {
 			ordListe2.leggTil(ord2[i]);
@@ -25,7 +28,8 @@ public class Ordliste3 {
 
 		// Lager unionen av de to ordlistene
 
-		MengdeADT<String> ordListeBegge = new KjedetMengde<String>();
+		//MengdeADT<String> ordListeBegge = new KjedetMengde<String>();
+		MengdeADT<String> ordListeBegge = new TabellMengde<String>();
 
 		ordListeBegge = ordListe1.union(ordListe2);
 

@@ -229,5 +229,15 @@ public class TabellMengde<T> implements MengdeADT<T> {
 		tab[antall] = element;
 		antall++;
 	}
+	@Override
+	public String toString() {
+		String resultat = ""; 
+		int i = 0;
+		while (i < antall) {
+			resultat += tab[i].toString() + " ";
+			i++;
+		}
+		return resultat;
+	}
 
 }// class

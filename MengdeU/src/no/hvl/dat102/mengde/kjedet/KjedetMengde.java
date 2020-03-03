@@ -81,7 +81,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		} else {
 			forgjenger = start;
 			aktuell = start.getNeste();
-			while (aktuell.getElement() != null && !funnet) {
+			while (aktuell != null && !funnet) {
 				if (aktuell.getElement().equals(element)) {
 					funnet = true;
 					resultat = aktuell.getElement();
@@ -113,7 +113,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	@Override
 	public boolean equals(Object m2) {
 		boolean likeMengder = true;
-		T element = null; 
+		T element = null;
 		if (m2 == this) {
 			return true;
 		}
@@ -179,7 +179,7 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 			element = teller.next();
 			i = 0;
 			aktuell = start;
-			while (i < antall && aktuell.getElement() != null) {
+			while (i < antall && aktuell != null) {
 				if (element.equals(aktuell.getElement())) {
 					((KjedetMengde<T>) snittM).settInn(aktuell.getElement());
 				}
@@ -193,11 +193,11 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	@Override
 	public MengdeADT<T> differens(MengdeADT<T> m2) {
 		MengdeADT<T> differensM = new KjedetMengde<T>();
-		T element; 
+		T element;
 		Iterator<T> teller = this.oppramser();
 		while (teller.hasNext()) {
 			element = teller.next();
-			if(!m2.inneholder(element)) {
+			if (!m2.inneholder(element)) {
 				differensM.leggTil(element);
 			}
 		}
@@ -226,6 +226,17 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 		nyNode.setNeste(start);
 		start = nyNode;
 		antall++;
+	}
+	//Lager en string representasjon av mengden
+	@Override
+	public String toString() {
+		String resultat = "";
+		LinearNode<T> aktuell = start;
+		while (aktuell != null) {
+			resultat += aktuell.getElement().toString() + "\t";
+			aktuell = aktuell.getNeste();
+		}
+		return resultat;
 	}
 
 }// class
