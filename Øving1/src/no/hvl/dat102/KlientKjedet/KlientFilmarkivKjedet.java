@@ -7,14 +7,12 @@ import no.hvl.dat102.ADT.FilmarkivADT;
 public class KlientFilmarkivKjedet {
 	
 	public static void main(String[] args) {
-		
+		FilmarkivADT filma = new FilmarkivKjedet(10);
 		//Legg inn korrekt filbane her for at skriving til fil skal fungere
 		String fil = "C:\\DAT102\\AlgoritmerOgDatastrukturer\\Øving1\\src\\no\\hvl\\dat102\\KlientKjedet\\filmarkiv.txt";
-		FilmarkivADT filma = new FilmarkivKjedet(0);
 		Fil.lesFraFil(filma, fil);
 		Meny meny = new Meny(filma);
 		meny.start(); 
 		Fil.skrivTilFil(filma, fil);
 	}
-
 }
