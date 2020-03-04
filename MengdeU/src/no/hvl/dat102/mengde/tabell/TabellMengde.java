@@ -231,12 +231,13 @@ public class TabellMengde<T> implements MengdeADT<T> {
 	}
 	@Override
 	public String toString() {
-		String resultat = ""; 
-		int i = 0;
+		String resultat = "<" + tab[0].toString(); 
+		int i = 1;
 		while (i < antall) {
-			resultat += tab[i].toString() + " ";
+			resultat += ", " + tab[i].toString();
 			i++;
 		}
+		resultat+= ">";
 		return resultat;
 	}
 

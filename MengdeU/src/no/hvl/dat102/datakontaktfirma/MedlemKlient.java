@@ -8,7 +8,7 @@ public class MedlemKlient {
 	
 	public static void main(String[] args) {
 		 
-		Medlem nr2 = new Medlem("Per", -1);
+		Medlem nr2 = new Medlem("Per");
 		Hobby maling = new Hobby("Maling");
 		Hobby pusle = new Hobby("Pussling");
 		nr2.setHobby(maling);

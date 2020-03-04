@@ -12,12 +12,12 @@ public class Hobby {
 	public void setHobbyNavn(String hobby) {
 		this.hobbyNavn = hobby;
 	}
-
+	@Override
 	public String toString() {
 //returnerer hobbynavnet med ”<” foran og ”>” bak som en String (Eksempel: <tegne, male>)
-		return "<" + hobbyNavn.toString() + ">";
+		return hobbyNavn.toString();
 	}
-
+	@Override
 	public boolean equals(Object hobby2) { //
 		Hobby hobbyDenAndre = (Hobby) hobby2;
 		return (hobbyNavn.equals(hobbyDenAndre.getHobbyNavn()));

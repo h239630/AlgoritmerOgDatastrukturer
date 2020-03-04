@@ -16,10 +16,10 @@ public class Medlem {
 //	}
 	
 	//Konstruktør for tabell mengde
-	public Medlem(String navn, int indeks) {
+	public Medlem(String navn) {
 		this.navn = navn; 
 		hobbyer = new TabellMengde<Hobby>();
-		this.statusIndeks = indeks; 
+		this.statusIndeks = -1; 
 	}
 	
 	public String getNavn() {
@@ -28,7 +28,7 @@ public class Medlem {
 	public MengdeADT<Hobby> getHobbyer() {
 		return hobbyer;
 	}
-	public int getStatus() {
+	public int getStatusIndeks() {
 		return statusIndeks;
 	}
 	
@@ -37,8 +37,8 @@ public class Medlem {
 	}
 	public void setHobby(Hobby hob) {
 		hobbyer.leggTil(hob);
-	}
-	public void setStatus(int indeks) {
+	}	
+	public void setStatusIndeks(int indeks) {
 		this.statusIndeks = indeks; 
 	}
 	public boolean passerTil(Medlem m2) {
@@ -54,6 +54,6 @@ public class Medlem {
 		} else {
 			status = "Koblet";
 		}
-		return "Medelemsnavn: " + navn + "\n" +"Hobbyer: " + h.toString() + "\n" + "Status: " + status;
+		return "Medlemsnavn: " + navn + "\n" +"Hobbyer: " + h.toString() + "\n" + "Status: " + status;
 	}
 }

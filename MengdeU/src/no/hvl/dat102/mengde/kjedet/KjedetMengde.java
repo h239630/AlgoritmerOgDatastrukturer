@@ -230,12 +230,13 @@ public class KjedetMengde<T> implements MengdeADT<T> {
 	//Lager en string representasjon av mengden
 	@Override
 	public String toString() {
-		String resultat = "";
-		LinearNode<T> aktuell = start;
+		String resultat = "<" + start.getElement().toString();
+		LinearNode<T> aktuell = start.getNeste();
 		while (aktuell != null) {
-			resultat += aktuell.getElement().toString() + "\t";
+			resultat += ", " + aktuell.getElement().toString();
 			aktuell = aktuell.getNeste();
 		}
+		resultat += ">";
 		return resultat;
 	}
 
