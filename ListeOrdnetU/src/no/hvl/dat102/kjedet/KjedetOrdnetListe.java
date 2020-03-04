@@ -1,6 +1,6 @@
 package no.hvl.dat102.kjedet;
 
-import no.hvl.dat102.EmptyCollectionException;
+import no.hvl.dat102.exceptions.EmptyCollectionException;
 import no.hvl.dat102.adt.*;
 
 /**
