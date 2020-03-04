@@ -1,12 +1,13 @@
 package no.hvl.dat102.adt;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.Before;
-import org.junit.Test;
+
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 
 public abstract class OrdnetListeADTTest {
@@ -33,7 +34,7 @@ public abstract class OrdnetListeADTTest {
 
 	protected abstract OrdnetListeADT<Integer> reset();
 
-	@Before
+	@BeforeEach
 	public final void setup() {
 		liste = reset();
 	}

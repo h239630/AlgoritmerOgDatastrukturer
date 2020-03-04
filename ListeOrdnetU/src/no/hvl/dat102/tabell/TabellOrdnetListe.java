@@ -83,11 +83,11 @@ public class TabellOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 			int i = 0;
 			boolean forLangt = false;
 			while (i < bak && !forLangt) {
-				if (element.compareTo(liste[i]) < 0) {
+				if (element.compareTo(liste[i]) <= 0) {
 					forLangt = true;
-					i--;
+				} else {
+					i++;
 				}
-				i++;
 			}
 			int j = bak;
 			while (j > i) {

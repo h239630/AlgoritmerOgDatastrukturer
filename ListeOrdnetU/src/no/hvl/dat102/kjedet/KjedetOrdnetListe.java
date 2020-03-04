@@ -1,7 +1,7 @@
 package no.hvl.dat102.kjedet;
 
 import no.hvl.dat102.exceptions.EmptyCollectionException;
-import no.hvl.dat102.adt.*;
+import no.hvl.dat102.adt.OrdnetListeADT;
 
 /**
  * 
@@ -25,8 +25,8 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ...Fyll ut
+		T resultat =  foerste.getElement();
+		foerste.setNeste(foerste.getNeste());
 		return resultat;
 	}
 
@@ -35,8 +35,12 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 		if (erTom())
 			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat = null;
-		// ...Fyll ut
+		T resultat = siste.getElement();
+		LinearNode<T> aktuell = foerste;
+		while(aktuell.getNeste() != siste) {
+			aktuell = aktuell.getNeste();
+		}
+		siste = aktuell;
 		return resultat;
 	}
 
@@ -72,8 +76,29 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public void leggTil(T element) {
-
-		// ...Fyll ut
+		LinearNode<T> funnetPlassering = new LinearNode<T>(element);
+		
+		if(foerste == null) { //Hvis kjeden er tom så legger den inn på første
+			foerste = funnetPlassering;
+			siste = foerste;
+		} else {
+			LinearNode<T> aktuell = foerste;
+			LinearNode<T> forrige = foerste;
+			//Finner stedet noden må inn på 
+			while(aktuell.getNeste() != null && element.compareTo(aktuell.getElement()) >= 0) {
+				forrige = aktuell;
+				aktuell = aktuell.getNeste();
+			}
+//			if(aktuell.getNeste() != null) { 
+//				forrige.setNeste(funnetPlassering);
+//				funnetPlassering.setNeste(aktuell);
+//			} else { 
+//				aktuell.setNeste(funnetPlassering);
+//				siste = funnetPlassering;
+//			}
+			
+		}
+		antall++;
 	}
 
 	@Override
