@@ -22,11 +22,12 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public T fjernFoerste() {
-		if (erTom())
-			throw new EmptyCollectionException("ordnet liste");
+//		if (erTom())
+//			throw new EmptyCollectionException("ordnet liste");
 
-		T resultat =  foerste.getElement();
-		foerste.setNeste(foerste.getNeste());
+		T resultat = foerste.getElement();
+		foerste = foerste.getNeste();
+		antall--;
 		return resultat;
 	}
 
@@ -36,11 +37,13 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 			throw new EmptyCollectionException("ordnet liste");
 
 		T resultat = siste.getElement();
-		LinearNode<T> aktuell = foerste;
-		while(aktuell.getNeste() != siste) {
+		LinearNode<T> aktuell = foerste, forrige = foerste;
+		while (aktuell != siste) {
+			forrige = aktuell;
 			aktuell = aktuell.getNeste();
 		}
-		siste = aktuell;
+		siste = forrige;
+		antall--;
 		return resultat;
 	}
 
@@ -66,7 +69,11 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public boolean erTom() {
-		return antall == 0;
+		boolean tom = true;
+		if (antall > 0) {
+			tom = false;
+		}
+		return tom;
 	}
 
 	@Override
@@ -76,27 +83,35 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 
 	@Override
 	public void leggTil(T element) {
-		LinearNode<T> funnetPlassering = new LinearNode<T>(element);
-		
-		if(foerste == null) { //Hvis kjeden er tom så legger den inn på første
-			foerste = funnetPlassering;
+		LinearNode<T> nyNode = new LinearNode<T>(element);
+		LinearNode<T> forrige = new LinearNode<T>();
+		LinearNode<T> aktuell = new LinearNode<T>();
+
+		if (foerste == null) { // Hvis kjeden er tom så legger den inn på første
+			foerste = nyNode;
 			siste = foerste;
 		} else {
-			LinearNode<T> aktuell = foerste;
-			LinearNode<T> forrige = foerste;
-			//Finner stedet noden må inn på 
-			while(aktuell.getNeste() != null && element.compareTo(aktuell.getElement()) >= 0) {
+			aktuell = foerste;
+			forrige = foerste;
+			// Finner stedet den nye noden må inn 
+			while (aktuell.getNeste() != null && element.compareTo(aktuell.getElement()) > 0) {
 				forrige = aktuell;
 				aktuell = aktuell.getNeste();
 			}
-//			if(aktuell.getNeste() != null) { 
-//				forrige.setNeste(funnetPlassering);
-//				funnetPlassering.setNeste(aktuell);
-//			} else { 
-//				aktuell.setNeste(funnetPlassering);
-//				siste = funnetPlassering;
-//			}
-			
+			//Sjekker om noden skal før eller etter aktuell node
+			if (element.compareTo(aktuell.getElement()) <= 0) { 
+				if (foerste == aktuell) { //Sjekker om node skal inn helt først
+					foerste = nyNode;
+					foerste.setNeste(aktuell);
+				} else { //Hvis ikke legges noden inn i mellom
+					forrige.setNeste(nyNode);
+					nyNode.setNeste(aktuell);
+				}
+			} else { //Eller helt til slutt
+				aktuell.setNeste(nyNode);
+				siste = nyNode;
+			}
+
 		}
 		antall++;
 	}
