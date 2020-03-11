@@ -47,12 +47,31 @@ public class Person implements Comparable<Person> {
 	public String toString() {
 		return (foedselsaar + "\t" + etternavn + ", " + fornavn);
 	}
-
+	@Override
 	public int compareTo(Person denAndrePersonen) {
 		int resultat = 0;
-		//... Fyll ut
-		//Kall på compareTo i Stringklassen
+		//Tester på årstall
+		if (this.getFoedselsaar() < denAndrePersonen.getFoedselsaar()) {
+			resultat = -1;
+		} else {
+			resultat = 1;
+		} 
+		//Tester på etternavn dersom årstall er lik
+		if (resultat == 0) {
+			if (this.getEtternavn().compareTo(denAndrePersonen.getEtternavn()) < 0) {
+				resultat = -1; 
+			} else {
+				resultat = 1; 
+			}
+		}
+		//Tester på fornavn dersom etternavn og årsatall er like
+		if (resultat == 0) {
+			if (this.getFornavn().compareTo(denAndrePersonen.getFornavn()) < 0) {
+				resultat = -1; 
+			} else {
+				resultat = 1; 
+			}
+		}		
 		return resultat;
-	}//
-
+	}
 }// class

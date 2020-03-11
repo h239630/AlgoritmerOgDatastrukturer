@@ -111,7 +111,6 @@ public class KjedetOrdnetListe<T extends Comparable<T>> implements OrdnetListeAD
 				aktuell.setNeste(nyNode);
 				siste = nyNode;
 			}
-
 		}
 		antall++;
 	}
