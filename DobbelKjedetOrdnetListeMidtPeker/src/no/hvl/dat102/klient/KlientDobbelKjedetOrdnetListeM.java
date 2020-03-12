@@ -8,14 +8,14 @@ public class KlientDobbelKjedetOrdnetListeM {
 
 		String ord[] = { "o", "a", "s", "m", "e", "k", "c" };
 
-		DobbelKjedetOrdnetListeM<String> liste = new DobbelKjedetOrdnetListeM(new String("AAA"), new String("zzz"));
+		DobbelKjedetOrdnetListeM<String> liste = new DobbelKjedetOrdnetListeM<String>(new String("AAA"), new String("zzz"));
 
 		// Legger data inn i listen
 		for (int i = 0; i < ord.length; i++)
 			liste.leggTil(ord[i]);
 
 		// Skriver ut liste
-		System.out.println("\n\n Opprinnelig liste");
+		System.out.println("\nOpprinnelig liste");
 		liste.skrivListe();
 
 		// Tester om et bestem element fins
@@ -23,9 +23,9 @@ public class KlientDobbelKjedetOrdnetListeM {
 
 		boolean funnet = liste.fins(element);
 		if (funnet)
-			System.out.println("\nElementet " + element + " fins");
+			System.out.println("\nElementet " + element + " fines");
 		else
-			System.out.println("\nElementet " + element + " fins ikke");
+			System.out.println("\nElementet " + element + " fines ikke");
 
 		// Fjerner noen fra listen og skriver ut igjen
 
@@ -39,38 +39,31 @@ public class KlientDobbelKjedetOrdnetListeM {
 
 		System.out.println("\n Fjerner " + element1);
 		liste.fjern(element1);
-		liste.skrivListe();
-		System.out.println("\n\n");
+		liste.skrivListe();	
 
 		System.out.println("\n Fjerner " + element2);
 		liste.fjern(element2);
-		liste.skrivListe();
-		System.out.println("\n\n");
+		liste.skrivListe();		
 
 		System.out.println("\n Fjerner " + element3);
 		liste.fjern(element3);
 		liste.skrivListe();
-		System.out.println("\n\n");
 
 		System.out.println("\n Fjerner " + element4);
 		liste.fjern(element4);
 		liste.skrivListe();
-		System.out.println("\n\n");
 
 		System.out.println("\n Fjerner " + element5);
 		liste.fjern(element5);
 		liste.skrivListe();
-		System.out.println("\n\n");
 
 		System.out.println("\n Fjerner " + element6);
 		liste.fjern(element6);
 		liste.skrivListe();
-		System.out.println("\n\n");
 
 		System.out.println("\n Fjerner " + element7);
 		liste.fjern(element7);
 		liste.skrivListe();
-		System.out.println("\n\n");
 
 	}
 }// class

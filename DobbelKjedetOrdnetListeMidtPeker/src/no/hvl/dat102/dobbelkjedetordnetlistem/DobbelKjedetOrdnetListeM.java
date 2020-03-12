@@ -37,46 +37,38 @@ public class DobbelKjedetOrdnetListeM<T extends Comparable<T>> implements Dobbel
 		antall = 0;
 	}
 
-	// ***********************************************************************************
-	// *
-	// *
-	// ***********************************************************************************
-
 	@Override
-	public void leggTil(T el) {
+	public void leggTil(T nyttElement) {
+		// Setter inn ordnet før den noden aktuell peker på
+		DobbelNode<T> aktuell;
 
-		// Setter inn ordnet før den noden p peker på
-		DobbelNode<T> p;
-
-		if ((el.compareTo(foerste.getElement()) <= 0) || (el.compareTo(siste.getElement()) >= 0)) {
+		if ((nyttElement.compareTo(foerste.getElement()) <= 0) || (nyttElement.compareTo(siste.getElement()) >= 0)) {
 			// Ugyldig. Alternativt kan vi ha det som et forkrav!
 			System.out.println("Ugyldig verdi. verdi > " + foerste.getElement() + "verdi < " + siste.getElement());
 
 		} else { // Kun lovlige verdier
 
-			antall++;
-
-			if (el.compareTo(midten.getElement()) >= 0) {// Finn plass i siste
-															// halvdel
-				p = midten.getNeste();
+			if (nyttElement.compareTo(midten.getElement()) >= 0) {// Finn plass i siste halvdel
+				aktuell = midten.getNeste();
 			} else { // Finn plass i første halvdel
-				p = foerste.getNeste();
+				aktuell = foerste.getNeste();
 			}
 
-			while (el.compareTo(p.getElement()) >= 0) {
-				p = p.getNeste();
+			while (nyttElement.compareTo(aktuell.getElement()) >= 0) {
+				aktuell = aktuell.getNeste();
 			} // while
 
-			// Setter inn:
-			// Innsett foran noden som p peker på
+			// Setter inn foran noden som aktuell peker på
+			DobbelNode<T> nyNode = new DobbelNode<T>(nyttElement);
 
-			DobbelNode<T> nyNode = new DobbelNode<T>(el);
-
-			// Fyll ut med noen få setninger
+			aktuell.getForrige().setNeste(nyNode);
+			nyNode.setForrige(aktuell.getForrige());
+			aktuell.setForrige(nyNode);
+			nyNode.setNeste(aktuell);
 
 			// Oppdaterer ny midten
 			nyMidten();
-
+			antall++;
 		} // else lovlige
 
 	}//
@@ -96,111 +88,115 @@ public class DobbelKjedetOrdnetListeM<T extends Comparable<T>> implements Dobbel
 		midten = p;
 	}//
 
-	// ***********************************************************************************
-	// *
-	// *
-	// ***********************************************************************************
 	@Override
-	public boolean fins(T el) {
+	public boolean fins(T nyttElement) {
 		boolean funnet = false;
-		DobbelNode<T> p = null;
-		if ((el.compareTo(foerste.getElement()) <= 0) || (el.compareTo(siste.getElement()) >= 0)) {
+		DobbelNode<T> aktuell = null;
+		if ((nyttElement.compareTo(foerste.getElement()) <= 0) || (nyttElement.compareTo(siste.getElement()) >= 0)) {
 			// Ugyldig. Alternativt kan vi ha det som et forkrav!
 			System.out.println("Ugyldig verdi. verdi > " + foerste.getElement() + "verdi < " + siste.getElement());
 
 		} else { // Kun lovlige verdier
-			if (el.compareTo(midten.getElement()) >= 0) { // Let i siste halvdel
-				p = midten; // Midten defineres å tilhøre siste del
+			if (nyttElement.compareTo(midten.getElement()) >= 0) { // Let i siste halvdel
+				aktuell = midten; // Midten defineres å tilhøre siste del
 			} else { // Let i første halvdel
-				p = foerste.getNeste();
+				aktuell = foerste.getNeste();
 			}
 
-			while (el.compareTo(p.getElement()) > 0) {
-				p = p.getNeste();
+			while (nyttElement.compareTo(aktuell.getElement()) > 0) {
+				aktuell = aktuell.getNeste();
 			} // while
 
 			// Test på funnet
-			if (el.compareTo(p.getElement()) == 0) {
+			if (nyttElement.compareTo(aktuell.getElement()) == 0) {
 				funnet = true;
 			}
 		} // else
 		return funnet;
 	}//
+	
+//	@Override
+//	public T fjern(T el) {
+//		T resultat = null;
+//		DobbelNode<T> aktuell = null;
+//		boolean funnet = false;
+//
+//		if ((el.compareTo(foerste.getElement()) <= 0) || (el.compareTo(siste.getElement()) >= 0)) {
+//			// Ugyldig. Alternativt kan vi ha det som et forkrav!
+//			System.out.println("Ugyldig verdi. verdi > " + foerste.getElement() + "verdi < " + siste.getElement());
+//
+//		} else { // Kun lovlige verdier
+//
+//			if (el.compareTo(midten.getElement()) >= 0) {
+//				aktuell = midten;
+//			} else {
+//				aktuell = foerste.getNeste();
+//			}
+//
+//			while (el.compareTo(aktuell.getElement()) > 0) {
+//				aktuell = aktuell.getNeste();
+//			} // while
+//
+//			if (el.compareTo(aktuell.getElement()) == 0) {
+//				funnet = true;
+//			}
+//           
+//			if (funnet) {
+//				// Tar ut 
+//				antall = antall - 1;
+//				// Fyll ut med noen få setninger.
+//				aktuell.getForrige().setNeste(aktuell.getNeste());
+//				aktuell.getNeste().setForrige(aktuell.getForrige());
+//				// Oppadtere midten
+//				nyMidten();
+//
+//				resultat = aktuell.getElement();
+//
+//			} // funnet
+//
+//		} // lovlige
+//		return resultat;
+//	}//
 
-	// ***********************************************************************************
-	// *
-	// *
-	// ***********************************************************************************
-    // Omskrive til å bruke finn-metoden
+	
+	// Bruker finn metoden for å finne elementet som skal fjernes
 	@Override
-	public T fjern(T el) {
+	public T fjern(T element) {
 		T resultat = null;
-		DobbelNode<T> p = null;
-		boolean funnet = false;
+		DobbelNode<T> aktuell = null;
+		
+		aktuell = finn(element);
+		if (aktuell != null) {
+			aktuell.getForrige().setNeste(aktuell.getNeste());
+			aktuell.getNeste().setForrige(aktuell.getForrige());
+			antall--;
 
-		if ((el.compareTo(foerste.getElement()) <= 0) || (el.compareTo(siste.getElement()) >= 0)) {
-			// Ugyldig. Alternativt kan vi ha det som et forkrav!
-			System.out.println("Ugyldig verdi. verdi > " + foerste.getElement() + "verdi < " + siste.getElement());
-
-		} else { // Kun lovlige verdier
-
-			if (el.compareTo(midten.getElement()) >= 0) {
-				p = midten;
-			} else {
-				p = foerste.getNeste();
-			}
-
-			while (el.compareTo(p.getElement()) > 0) {
-				p = p.getNeste();
-			} // while
-
-			if (el.compareTo(p.getElement()) == 0) {
-				funnet = true;
-			}
-           
-			if (funnet) {
-				// Tar ut 
-				antall = antall - 1;
-				// Fyll ut med noen få setninger.
-
-				// Oppadtere midten
-				nyMidten();
-
-				resultat = p.getElement();
-
-			} // funnet
-
-		} // lovlige
+			// Oppdaterer midten
+			nyMidten();
+		}
 		return resultat;
 	}//
 
-	/* Alternativ kan fjern-metoden bruke finn-metoden */
-
-	private DobbelNode<T> finn(T el) {
+	private DobbelNode<T> finn(T element) {
 		DobbelNode<T> node = null;
-		DobbelNode<T> p = null;
+		DobbelNode<T> aktuell = null;
 
 		// Kun lovlige verdier
-		if (el.compareTo(midten.getElement()) >= 0) { // Let i siste halvdel
-			p = midten; // Midten defineres å tilhøre siste del
+		if (element.compareTo(midten.getElement()) >= 0) { // Let i siste halvdel
+			aktuell = midten; // Midten defineres å tilhøre siste del
 		} else { // Let i første halvdel
-			p = foerste.getNeste();
+			aktuell = foerste.getNeste();
 		}
-		while (el.compareTo(p.getElement()) > 0) {
-			p = p.getNeste();
+		while (element.compareTo(aktuell.getElement()) > 0) {
+			aktuell = aktuell.getNeste();
 		} // while
 
 		// Test på funnet
-		if (el.compareTo(p.getElement()) == 0) {
-			node = p;
+		if (element.compareTo(aktuell.getElement()) == 0) {
+			node = aktuell;
 		}
 		return node;
 	}
-
-	// ***********************************************************************************
-	// *
-	// *
-	// ***********************************************************************************
 
 	public void skrivListe() {
 		DobbelNode<T> p = foerste;
@@ -210,10 +206,9 @@ public class DobbelKjedetOrdnetListeM<T extends Comparable<T>> implements Dobbel
 			p = p.getNeste();
 		}
 
-		System.out.println(
-				"Foerste:" + foerste.getElement() + " Midten:" + midten.getElement() + " Siste:" + siste.getElement());
-		System.out.println();
-
-	}//
+		System.out.println("\nFoerste: " + foerste.getElement() 
+						+ " \nMidten: " + midten.getElement() 
+						+ " \nSiste: " + siste.getElement());
+	}
 
 }// class
